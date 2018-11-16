@@ -11,26 +11,19 @@ set softtabstop=2
 set autoindent
 set smartindent
 
-" molokai
-syntax on
-colorscheme molokai
-set t_Co=256
-
 " search
 set ignorecase
 set smartcase
 set wrapscan
 
 " NeoBundle
-if &compatible
-  set nocompatible               " Be iMproved
-endif
+set nocompatible               " Be iMproved
 
 " Required:
-set runtimepath+=/home/endoyuuki/.vim/bundle/neobundle.vim/
+set runtimepath+=$HOME/.vim/bundle/neobundle.vim/
 
 " Required:
-call neobundle#begin(expand('/home/endoyuuki/.vim/bundle'))
+call neobundle#begin(expand('$HOME/.vim/bundle'))
 
 " Let NeoBundle manage NeoBundle
 " Required:
@@ -41,6 +34,19 @@ NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet.vim'
 NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'vim-latex/vim-latex'
+
+" Color Scheme
+" solarized
+NeoBundle 'altercation/vim-colors-solarized'
+" " mustang
+NeoBundle 'croaker/mustang-vim'
+" " jellybeans
+NeoBundle 'nanotech/jellybeans.vim'
+" " molokai
+NeoBundle 'tomasr/molokai'
+"
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'ujihisa/unite-colorscheme'
 
 " Required:
 call neobundle#end()
@@ -72,3 +78,18 @@ let g:Tex_IgnoredWarnings =
       \"Citation %.%# undefined\n".
       \"LaTeX Font Warning:"
 let g:Tex_IgnoreLevel = 8
+
+" Color Scheme
+colorscheme molokai
+if &term =~ "xterm-256color" || "screen-256color"
+  set t_Co=256
+  set t_Sf=[3%dm
+  set t_Sb=[4%dm
+elseif &term =~ "xterm-color"
+  set t_Co=8
+  set t_Sf=[3%dm
+  set t_Sb=[4%dm
+endif
+
+syntax enable
+hi PmenuSel cterm=reverse ctermfg=33 ctermbg=222 gui=reverse guifg=#3399ff guibg=#f0e68c
